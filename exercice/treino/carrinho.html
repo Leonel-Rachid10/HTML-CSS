@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .produto-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .produto-info {
+            flex-grow: 1;
+        }
+        .produto-nome {
+            font-weight: bold;
+        }
+        .produto-preco {
+            color: #555;
+        }
+        .controles {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .controles input[type="number"] {
+            width: 60px;
+            text-align: center;
+        }
+        .controles button {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            color: white;
+        }
+        .adicionar {
+            background-color: #28a745;
+        }
+        .remover {
+            background-color: #dc3545;
+        }
+        .carrinho {
+            margin-top: 30px;
+        }
+        .carrinho-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed #ccc;
+        }
+        #carrinho-lista {
+            list-style: none;
+            padding: 0;
+        }
+        #total-display {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: right;
+            border-top: 2px solid #333;
+            padding-top: 10px;
+        }
+
+          footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Loja de Produtos</h1>
+
+    <div id="lista-produtos">
+    </div>
+
+    <div class="carrinho">
+        <h2>Seu Carrinho</h2>
+        <ul id="carrinho-lista">
+        </ul>
+        <div id="total-display">Total: 0.00 MT</div>
+    </div>
+</div>
+
+<script>
+    // Seus produtos com nome e preço, já agrupados e somados
+    const produtos = [
+        { nome: "Vanessa", preco: 16500 },
+        { nome: "Dona", preco: 10170 },
+        { nome: "Neusa", preco: 48600 },
+        { nome: "Internet", preco: 2000 },
+        { nome: "Ge", preco: 3600 },
+        { nome: "Joaquim", preco: 3000 },
+        { nome: "Nelito", preco: 3000 },
+        { nome: "Tio Rachid", preco: 11000 },
+        { nome: "Mama", preco: 5000 },
+        { nome: "Credelec", preco: 1000 },
+        { nome: "Fatos", preco: 1200 },
+        { nome: "Tio", preco: 9600 },
+        { nome: "Matola", preco: 100 },
+        { nome: "Jorge", preco: 30000 },
+        { nome: "Cama", preco: 10000 },
+        { nome: "Wilson", preco: 1000 },
+        { nome: "Fipag", preco: 443 },
+        { nome: "Eu", preco: 1520 },
+        { nome: "Isabell", preco: 200000 },
+        { nome: "Azeite e omo", preco: 600 },
+        { nome: "Grelha", preco: 200 },
+        { nome: "Dercio", preco: 400 },
+        { nome: "Caramelo", preco: 1000 },
+        { nome: "Teresa", preco: 4000 },
+        { nome: "Pão e açúcar", preco: 200 },
+        { nome: "Pão e água", preco: 200 },
+        { nome: "Compras", preco: 2000 },
+        { nome: "Gás", preco: 2000 },
+        { nome: "Leite", preco: 2000 }
+    ];
+
+    // O objeto que vai funcionar como o nosso "carrinho"
+    const carrinho = {};
+
+    // Função para renderizar a lista de produtos na página
+    function renderizarProdutos() {
+        const listaProdutosEl = document.getElementById('lista-produtos');
+        listaProdutosEl.innerHTML = '';
+        
+        produtos.forEach(produto => {
+            const produtoDiv = document.createElement('div');
+            produtoDiv.className = 'produto-item';
+            
+            produtoDiv.innerHTML = `
+                <div class="produto-info">
+                    <div class="produto-nome">${produto.nome}</div>
+                    <div class="produto-preco">${produto.preco.toFixed(2)} MT</div>
+                </div>
+                <div class="controles">
+                    <input type="number" min="1" value="1" id="qnt-${produto.nome.replace(/\s+/g, '').replace(/ã|á/g, 'a').replace(/é/g, 'e').replace(/ç/g, 'c')}">
+                    <button class="adicionar" onclick="adicionarAoCarrinho('${produto.nome}')">Adicionar</button>
+                </div>
+            `;
+            listaProdutosEl.appendChild(produtoDiv);
+        });
+    }
+
+    // Função para adicionar um item ao carrinho
+    function adicionarAoCarrinho(nome) {
+        const inputId = `qnt-${nome.replace(/\s+/g, '').replace(/ã|á/g, 'a').replace(/é/g, 'e').replace(/ç/g, 'c')}`;
+        const quantidade = parseInt(document.getElementById(inputId).value, 10);
+        
+        if (quantidade > 0) {
+            if (carrinho[nome]) {
+                carrinho[nome] += quantidade;
+            } else {
+                carrinho[nome] = quantidade;
+            }
+            atualizarCarrinho();
+        }
+    }
+
+    // Função para remover um item do carrinho
+    function removerDoCarrinho(nome, quantidadeParaRemover) {
+        if (carrinho[nome]) {
+            carrinho[nome] -= quantidadeParaRemover;
+            if (carrinho[nome] <= 0) {
+                delete carrinho[nome];
+            }
+        }
+        atualizarCarrinho();
+    }
+
+    // Função para atualizar a visualização do carrinho e o total
+    function atualizarCarrinho() {
+        const listaCarrinhoEl = document.getElementById('carrinho-lista');
+        const totalDisplayEl = document.getElementById('total-display');
+        listaCarrinhoEl.innerHTML = '';
+        let total = 0;
+
+        for (const nomeDoItem in carrinho) {
+            const quantidade = carrinho[nomeDoItem];
+            const produto = produtos.find(p => p.nome === nomeDoItem);
+            const precoTotalItem = produto.preco * quantidade;
+            total += precoTotalItem;
+
+            const itemLi = document.createElement('li');
+            itemLi.className = 'carrinho-item';
+            itemLi.innerHTML = `
+                <div>
+                    <span class="produto-nome">${nomeDoItem}</span> x <span class="quantidade">${quantidade}</span>
+                    <br>
+                    <span class="produto-preco">Preço: ${precoTotalItem.toFixed(2)} MT</span>
+                </div>
+                <div class="controles">
+                    <input type="number" min="1" value="1" id="qnt-rem-${nomeDoItem.replace(/\s+/g, '').replace(/ã|á/g, 'a').replace(/é/g, 'e').replace(/ç/g, 'c')}">
+                    <button class="remover" onclick="removerDoCarrinho('${nomeDoItem}', parseInt(document.getElementById('qnt-rem-${nomeDoItem.replace(/\s+/g, '').replace(/ã|á/g, 'a').replace(/é/g, 'e').replace(/ç/g, 'c')}').value, 10))">Remover</button>
+                </div>
+            `;
+            listaCarrinhoEl.appendChild(itemLi);
+        }
+
+        totalDisplayEl.textContent = `Total: ${total.toFixed(2)} MT`;
+    }
+
+    // Carregar a lista de produtos ao carregar a página
+    window.onload = renderizarProdutos;
+</script>
+
+<footer>
+    <p>site criado por <a href="https://www.instagram.com/leonel_rachid_10/" target="_blank">Leonel Rachid</a> para a web</p>
+</footer>
+</body>
+</html>
