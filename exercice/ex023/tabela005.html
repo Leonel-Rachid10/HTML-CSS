@@ -25,13 +25,23 @@
             padding: 8px;
         } 
 
-        tr.destaque{
+        col.cnome{
             background-color: lightgreen;
+        }
+
+        col.csexo{
+            background-color: yellow;
         }
     </style>
 </head>
 <body>
     <table>
+        <colgroup>
+            <col class="cnome">
+            <col class="csexo">
+            <col class="cidade">
+            <col class="cprof">
+        </colgroup>
         <caption>Cadastro</caption>
         <tr>
             <th> Nome</th>
@@ -72,7 +82,7 @@
         </tr>
 
         
-        <tr class="destaque">
+        <tr>
             <td> Leonel Rachid</td>
             <td >21</td>
             <td>M</td>
