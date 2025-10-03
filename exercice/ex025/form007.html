@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formularios</title>
+</head>
+<body>
+    <h1> Exemplo de formlario</h1>
+
+    <form action="cadastro.php" method="post" autocomplete="on">
+
+        <p>
+            <label for="iest">Provincias</label>
+            <select name="provincia" id="iprov">
+
+                <optgroup label="Zona Sul">
+                    <option value="mpt"> Maputo</option>
+                    <option value="NPL">Gaza</option>
+                    <option value="BR">Inhambane</option>
+                </optgroup>
+
+
+                <optgroup label="Zona Centro">
+                    <option value="SF" selected>Sofala</option>
+                    <option value="MC">Manica</option>
+                    <option value="TT"> Tete</option>
+                    <option value="ZM">Zambezia</option>
+                </optgroup>
+
+                <optgroup label="Zona Norte">
+                    <option value="NPL">Nampula</option>
+                    <option value="NS"> Niassa</option>
+                    <option value="CB"> Cabo Delgado</option>
+                </optgroup>
+
+            </select>
+        </p>
+        <p>
+            <label for="iprof"> Profissao</label>
+            <input type="text" name="prof" id="iprof" list="iestprof">
+
+            <datalist id="iestprof">
+                <option value="ADM">Administrador</option>
+                <option value="DEV">Densevolvedor</option><option value="ADV">Advogado</option>
+                <option value="PROF">Professor</option>
+                <option value="CONT">Contabilista</option>
+                <option value="MED">Medico</option>
+
+            </datalist>
+        </p>
+
+        <p>
+            <label for="ismg">Menssagem</label> <br>
+            <textarea name="msg" id="ismg" cols="10" rows="10"></textarea>
+        </p>
+
+        <p>
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Limpar">
+        </p>
+
+
+    </form>
+</body>
+</html>
