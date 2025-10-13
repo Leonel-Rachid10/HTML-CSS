@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Midia Queries</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="estilos/style.css">
 </head>
 <body>
 
     <header>
         <h1>Meu Site</h1>
+       <span  id="burger"  class="material-icons" onclick="clickMenu()">
+   menu
+</span>
 
-        <menu>
+        <menu id="leo">
             <ul>
                 <li> <a href="#"> Opçao 1</a></li>
                 <li> <a href="#"> Opçao 2</a></li>
@@ -32,6 +36,19 @@
 
         </article>
     </main>
+
+    <script>
+        function clickMenu() {
+
+            if (leo.style.display=='block'){
+                      leo.style.display='none'
+            } else{
+                leo.style.display = 'block'
+            }
+        
+
+        }
+    </script>
     
 </body>
 </html>
