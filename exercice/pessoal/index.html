@@ -31,17 +31,27 @@
 
     <main class="container">
         
-        <section id="sobre" class="card">
-            <h2>Sobre Mim <i class="fas fa-user-graduate"></i></h2>
+     <section id="sobre" class="card">
+    <h2>Sobre Mim <i class="fas fa-user-graduate"></i></h2>
 
-          <img src="Screenshot_20230706-234148.png" alt="Foto de Perfil de Leonel Rachid Miguel" class="foto-perfil">
+    <div class="sobre-conteudo">
+        
+        <img src="Screenshot_20230706-234148.png" alt="Foto de Perfil de Leonel Rachid Miguel" class="foto-perfil">
+
+        <div class="sobre-texto">
             <p>
                 Olá, sou Leonel Rachid, nascido no dia 10 de janeiro na cidade da Beira. Concluí o meu nível médio em 2020 na Escola Secundária do Dondo. Sou um estudante apaixonado por Tecnologia e atualmente curso Gestão e Informática.
             </p>
             <p>
                 Sempre fui fascinado pela Tecnologia desde os meus 8 anos, na 4ª classe, quando a minha paixão começou! Felizmente, estou a formar-me na área de tecnologia. O meu grande objetivo é tornar-me um grande desenvolvedor de aplicações ("Programador").
             </p>
-        </section>
+            <p>
+                esta e a minha pagina pessoal, com o meu portfólio.
+            </p>
+        </div>
+        
+    </div>
+</section>
 
         <section id="habilidades" class="card">
             <h2>Habilidades Técnicas <i class="fas fa-code"></i></h2>
@@ -71,12 +81,13 @@
                 <div class="timeline-item">
                     <h3>HTML5 e CSS3 (Curso Online)</h3>
                     <p class="data"> 10/06/2025 - YouTube</p>
-                    <p>Competências adquiridas: Desenvolvimento Web.</p>
+                    <p>Habilidade adquirida: Desenvolvimento Web.</p>
                 </div>
 
                 <div class="timeline-item">
                     <h3>JavaScript (Curso Online)</h3>
                     <p class="data">09/09/2025</p>
+                    Habilidade adquirida: noçoes basicas de programaçao.
                 </div>
 
             </div>
@@ -126,17 +137,42 @@
             </div>
             
         </section>
+<section id="contacto" class="card">
+    <h2>Contacto <i class="fas fa-envelope"></i></h2>
+    
+    <p>Use o formulário abaixo para me enviar uma mensagem, ou use os meus links diretos.</p>
+    
+    <form action="https://formspree.io/f/meopoydo" method="POST">
+        
+        <div class="form-group">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" name="nome" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Seu Email</label>
+            <input type="email" id="email" name="_replyto" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="message">Mensagem</label>
+            <textarea id="message" name="mensagem" rows="5" required></textarea>
+        </div>
+        
+        <button type="submit" class="btn">Enviar Mensagem</button>
 
-        <section id="contacto" class="card">
-            <h2>Contacto <i class="fas fa-envelope"></i></h2>
-            <p>Entre em Contacto:</p>
-            <ul>
-                <li><strong>GitHub:</strong> <a href="https://github.com/Leonel-Rachid10" target="_blank">https://github.com/Leonel-Rachid10</a></li>
-                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/leonel_rachid_10/" target="_blank">instagram.com/leonel_rachid_10/</a></li>
-                <li><strong>Whatsapp (1):</strong> 852623034</li>
-                <li><strong>Whatsapp (2):</strong> 833724992</li>
-            </ul>
-        </section>
+    </form>
+    
+    <div class="social-links">
+        <p>Ou conecte-se através:</p>
+        <ul>
+            <li><strong>GitHub:</strong> <a href="https://github.com/Leonel-Rachid10" target="_blank">https://github.com/Leonel-Rachid10</a></li>
+            <li><strong>Instagram:</strong> <a href="https://www.instagram.com/leonel_rachid_10/" target="_blank">instagram.com/leonel_rachid_10/</a></li>
+            <li><strong>Whatsapp (1):</strong> 852623034</li>
+            <li><strong>Whatsapp (2):</strong> 833724992</li>
+        </ul>
+    </div>
+</section>
 
     </main>
 
