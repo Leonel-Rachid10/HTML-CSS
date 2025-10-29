@@ -1,235 +1,227 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leonel Rachid - Estudante de Tecnologia</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonel Rachid Miguel - Portfólio de Desenvolvimento Web</title>
+    <meta name="description" content="Portfólio de Leonel Rachid Miguel, estudante apaixonado por Tecnologia e Desenvolvimento Web (HTML, CSS, JavaScript).">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
-    <header>
-        <nav class="container"> 
-            <h1>Leonel Rachid </h1>
-            <ul>
-                <li><a href="#sobre">Sobre Mim</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#educacao">Cursos</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#galeria">Galeria</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
+    <header>
+        <div class="container">
+            <h1>Leonel Rachid Miguel</h1>
 
-            <button id="toggleDarkMode" class="btn btn-toggle" aria-label="Alternar Modo Escuro">
-            <i class="fas fa-moon"></i>
-        </button>
-        </nav>
-    </header>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre Mim</a></li>
+                    <li><a href="#habilidades">Habilidades</a></li>
+                    <li><a href="#educacao">Cursos</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
 
-    <main class="container">
-        
-     <section id="sobre" class="card">
-    <h2>Sobre Mim <i class="fas fa-user-graduate"></i></h2>
+            <button id="toggleDarkMode" class="btn btn-toggle" aria-label="Alternar Modo Escuro">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
 
-    <div class="sobre-conteudo">
-        
-        <img src="Screenshot_20230706-234148.png" alt="Foto de Perfil de Leonel Rachid Miguel" class="foto-perfil">
+    <main class="container">
+        <section id="sobre">
+            <h2>Sobre Mim <i class="fas fa-user-graduate"></i></h2>
+            <div class="card">
+                <div class="sobre-conteudo">
+                    <img src="Screenshot_20230706-234148.png" alt="Foto de Perfil de Leonel Rachid Miguel" class="foto-perfil">
 
-        <div class="sobre-texto">
-            <p>
-                Olá, sou Leonel Rachid, nascido no dia 10 de janeiro na cidade da Beira. Concluí o meu nível médio em 2020 na Escola Secundária do Dondo. Sou um estudante apaixonado por Tecnologia e atualmente curso Gestão e Informática.
-            </p>
-            <p>
-                Sempre fui fascinado pela Tecnologia desde os meus 8 anos, na 4ª classe, quando a minha paixão começou! Felizmente, estou a formar-me na área de tecnologia. O meu grande objetivo é tornar-me um grande desenvolvedor de aplicações ("Programador").
-            </p>
-            
-                        <p id="typewriter-output">
-                                <span id="typewriter-text"></span>
-            </p>
-        </div>
-    </div>
-</section>
-
-        <section id="habilidades" class="card">
-            <h2>Habilidades Técnicas <i class="fas fa-code"></i></h2>
-            <div class="skills-list">
-                <span class="skill-tag">HTML5</span>
-                <span class="skill-tag">CSS3</span>
-                <span class="skill-tag">Git & GitHub</span>
-                <span class="skill-tag">JavaScript</span>
-            </div>
-        </section>
-
-        <section id="educacao" class="card">
-            <h2>Educação e Cursos <i class="fas fa-graduation-cap"></i></h2>
-            <div class="timeline">
-                
-                <div class="timeline-item">
-                    <h3>Medicina Geral - Universidade Católica de Moçambique</h3>
-                    <p class="data">18/03/2021 - 2023</p>
-                </div>
-                
-                <div class="timeline-item">
-                    <h3>Gestão e Informática - Instituto Superior Monitor</h3>
-                    <p class="data">23/02/2023 - 2026</p>
-                    <p>Foco em: Programação Orientada a Objetos e Programação Web.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h3>HTML5 e CSS3 (Curso Online)</h3>
-                    <p class="data"> 10/06/2025 - YouTube</p>
-                    <p>Habilidade adquirida: Desenvolvimento Web.</p>
-                </div>
-
-                <div class="timeline-item">
-                    <h3>JavaScript (Curso Online)</h3>
-                    <p class="data">09/09/2025</p>
-                    Habilidade adquirida: noçoes basicas de programaçao.
-                </div>
-
-            </div>
-        </section>
-
-        <section id="projetos" class="card">
-            <h2>Projetos <i class="fas fa-laptop-code"></i></h2>
-
-            <div class="projeto-item">
-                <h3>1. Projeto-Cordel</h3>
-                <div id="detalhes-projeto-1" class="detalhes-projeto hidden">
-                    <p> Um pequeno site de poesia, usando HTML5 e CSS3.</p>
-                    <a href="https://leonel-rachid10.github.io/projecto-cordel/" target="_blank" class="btn">Ver Projeto </a>
-                </div>
-                                <button class="btn btn-toggle" onclick="toggleDetails(event, 'detalhes-projeto-1')">Mostrar Detalhes</button>
-            </div>
-
-            <div class="projeto-item">
-                <h3>2. Projeto-Login</h3>
-                <div id="detalhes-projeto-2" class="detalhes-projeto hidden">
-                    <p> Tela de login com Media Query.</p>
-                    <a href="https://leonel-rachid10.github.io/projeto-login/" target="_blank" class="btn">Ver Projeto (GitHub)</a>
-                </div>
-                                <button class="btn btn-toggle" onclick="toggleDetails(event, 'detalhes-projeto-2')">Mostrar Detalhes</button>
-            </div>
-
-            <div class="projeto-item">
-                <h3>3. Projeto-Social</h3>
-                <div id="detalhes-projeto-3" class="detalhes-projeto hidden">
-                    <p> Um projeto que explora o uso de multimédia em web design.</p>
-                    <a href="https://leonel-rachid10.github.io/projeto-social/" target="_blank" class="btn">Ver Projeto (GitHub)</a>
-                </div>
-                                <button class="btn btn-toggle" onclick="toggleDetails(event, 'detalhes-projeto-3')">Mostrar Detalhes</button>
-            </div>
-
-            <div class="projeto-item">
-                <h3>4. Projeto-Android</h3>
-                <div id="detalhes-projeto-4" class="detalhes-projeto hidden">
-                    <p> A História do Android - Um projeto web sobre tecnologia.
-                        onde vemos os primeiros robos android criados por irina 
-                    </p>
-                    <a href="https://leonel-rachid10.github.io/projeto-android/" target="_blank" class="btn">Ver Projeto (GitHub)</a>
-                </div>
-                                <button class="btn btn-toggle" onclick="toggleDetails(event, 'detalhes-projeto-4')">Mostrar Detalhes</button>
-            </div>
-            
-        </section>
-        
-                <section id="galeria" class="card">
-            <h2>Galeria e Multimédia <i class="fas fa-camera"></i></h2>
-
-            <div class="galeria-fotos">
-        
-                <div class="foto-item">
-                    <img src="imagem/Foto2.png" alt="Trabalho em equipa">
-                    <p class="legenda">Trabalho em equipa durante um projeto de informática. nossas primeiras noçoes em java em 2024</p>
-                </div>
-        
-                <div class="foto-item">
-                    <img src="imagem/Foto4.png" alt="Apresentação de Programação">
-                    <p class="legenda">Apresentação de um trabalho de Programação para a turma.</p>
-                </div>
-        
-                <div class="foto-item">
-                    <img src="imagem/Foto5.jpg" alt="Momento de Intervalo">
-                    <p class="legenda">Momento de Intervalo na universidade.</p>
-                </div>
-        
-                <div class="foto-item">
-                    <img src="imagem/Foto1.png" alt="Eu no Recinto Escolar">
-                    <p class="legenda"> Eu a no Recinto Escolar.</p>
-                </div>
-        
-                <div class="foto-item">
-                    <img src="imagem/Foto3.jpg" alt="Pausa na Faculdade">
-                    <p class="legenda">Um momento de pausa nas escadas da Faculdade.</p>
-                </div>
-
-            </div>
-    
-            <h3>Minha primeira Inteiraçao com o Ciclo while em java.</h3>
-            <div class="video-local-container">
-                <video controls>
-                    <source src="video/Meu-Video.mp4" type="video/mp4">
-                    O seu navegador não suporta a tag de vídeo.
-                </video>
-                <p> Quando estava aprender a usar o while em java.</p>
-            </div>
+                    <div class="sobre-texto">
+                        <p>Olá, sou Leonel Rachid, nascido no dia 10 de janeiro na cidade da Beira. Concluí o meu nível médio em 2020 na Escola Secundária do Dondo. Sou um estudante apaixonado por Tecnologia e atualmente curso Gestão e Informática.</p>
+                        
+                        <p>Sempre fui fascinado pela Tecnologia desde os meus 8 anos, na 4ª classe, quando a minha paixão começou! Felizmente, estou a formar-me na área de tecnologia. O meu grande objetivo é tornar-me um grande desenvolvedor de aplicações ("Programador").</p>
+                        
+                        <p id="typewriter-output">
+                            <span id="typewriter-text"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </section>
 
-<section id="contacto" class="card">
-    <h2>Contacto <i class="fas fa-envelope"></i></h2>
-    
-    <p>Use o formulário abaixo para me enviar uma mensagem, ou use os meus links diretos.</p>
-    
-    <form action="https://formspree.io/f/meopoydo" method="POST">
-        
-        <div class="form-group">
-            <label for="name">Nome Completo</label>
-            <input type="text" id="name" name="nome" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="email">Seu Email</label>
-            <input type="email" id="email" name="_replyto" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="message">Mensagem</label>
-            <textarea id="message" name="mensagem" rows="5" required></textarea>
-        </div>
-        
-        <button type="submit" class="btn">Enviar Mensagem</button>
+        <section id="habilidades">
+            <h2>Habilidades Técnicas <i class="fas fa-code"></i></h2>
+            <div class="card">
+                <div class="skills-list">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">Git & GitHub</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+            </div>
+        </section>
 
-    </form>
-    
-    <div class="social-links">
-        <p>Ou conecte-se através:</p>
-        <ul>
-            <li><strong>GitHub:</strong> <a href="https://github.com/Leonel-Rachid10" target="_blank">https://github.com/Leonel-Rachid10</a></li>
-            <li><strong>Instagram:</strong> <a href="https://www.instagram.com/leonel_rachid_10/" target="_blank">instagram.com/leonel_rachid_10/</a></li>
-            <li><strong>Whatsapp (1):</strong> 852623034</li>
-            <li><strong>Whatsapp (2):</strong> 833724992</li>
-        </ul>
-    </div>
-</section>
+        <section id="educacao">
+            <h2>Educação e Cursos <i class="fas fa-graduation-cap"></i></h2>
+            <div class="card">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Medicina Geral - Universidade Católica de Moçambique</h3>
+                        <p class="data">18/03/2021 - 2023</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3>Gestão e Informática - Instituto Superior Monitor</h3>
+                        <p class="data">23/02/2023 - 2026</p>
+                        <p>Foco em: Programação Orientada a Objetos e Programação Web.</p>
+                    </div>
 
-    </main>
+                    <div class="timeline-item">
+                        <h3>HTML5 e CSS3 (Curso Online)</h3>
+                        <p class="data"> 10/06/2025 - YouTube</p>
+                        <p>Habilidade adquirida: Desenvolvimento Web.</p>
+                    </div>
 
-        <div id="lightbox" class="lightbox-overlay hidden">
-    <span class="lightbox-close">&times;</span>
-    <img src="" alt="Imagem Ampliada" class="lightbox-content">
-    </div>
+                    <div class="timeline-item">
+                        <h3>JavaScript (Curso Online)</h3>
+                        <p class="data">09/09/2025</p>
+                        <p>Habilidade adquirida: noções básicas de programação.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <footer>
-        <p>&copy; 2025 <a href="https://www.instagram.com/leonel_rachid_10/" target="_blank">Leonel Rachid</a> | Desenvolvedor Web</p>
-    </footer>
+        <section id="projetos">
+            <h2>Projetos <i class="fas fa-laptop-code"></i></h2>
+            <div class="card">
+                <div class="projeto-item">
+                    <h3>1. Projeto-Cordel</h3>
+                    <div id="detalhes-projeto-1" class="detalhes-projeto hidden"> 
+                        <p> Um pequeno site de poesia, usando HTML5 e CSS3.</p>
+                        <a href="https://leonel-rachid10.github.io/projecto-cordel/" target="_blank" class="btn">Ver Projeto </a>
+                    </div>
+                    <button class="btn btn-toggle" onclick="toggleDetails(event, 'detalhes-projeto-1')">Mostrar Detalhes</button>
+                </div>
 
-    <script src="script.js"></script>
+                <div class="projeto-item">
+                    <h3>2. Projeto-Login</h3>
+                    <div id="detalhes-projeto-2" class="detalhes-projeto hidden">
+                        <p> Tela de login com Media Query.</p>
+                        <a href="https://leonel-rachid10.github.io/projeto-login/" target="_blank" class="btn">Ver Projeto (GitHub)</a>
+                    </div>
+                    <button class="btn btn-toggle" onclick="toggleDetails(event, 'detalhes-projeto-2')">Mostrar Detalhes</button>
+                </div>
 
-    <a id="btnVoltarTopo" href="#sobre" class="hidden">
-    <i class="fas fa-arrow-up"></i>
+                <div class="projeto-item">
+                    <h3>3. Projeto-Social</h3>
+                    <div id="detalhes-projeto-3" class="detalhes-projeto hidden">
+                        <p> Um projeto que explora o uso de multimédia em web design.</p>
+                        <a href="https://leonel-rachid10.github.io/projeto-social/" target="_blank" class="btn">Ver Projeto (GitHub)</a>
+                    </div>
+                    <button class="btn btn-toggle" onclick="toggleDetails(event, 'detalhes-projeto-3')">Mostrar Detalhes</button>
+                </div>
+
+                <div class="projeto-item">
+                    <h3>4. Projeto-Android</h3>
+                    <div id="detalhes-projeto-4" class="detalhes-projeto hidden">
+                        <p> A História do Android - Um projeto web sobre tecnologia, onde vemos os primeiros robôs android criados por irina.</p>
+                        <a href="https://leonel-rachid10.github.io/projeto-android/" target="_blank" class="btn">Ver Projeto (GitHub)</a>
+                    </div>
+                    <button class="btn btn-toggle" onclick="toggleDetails(event, 'detalhes-projeto-4')">Mostrar Detalhes</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria">
+            <h2>Galeria e Multimédia <i class="fas fa-camera"></i></h2>
+            <div class="card">
+                
+                <div class="galeria-fotos">
+                    <div class="foto-item">
+                        <img src="imagem/Foto2.png" alt="Trabalho em equipa durante um projeto de informática.">
+                        <p class="legenda">Trabalho em equipa durante um projeto de informática. nossas primeiras noções em java em 2024</p>
+                    </div>
+                    <div class="foto-item">
+                        <img src="imagem/Foto4.png" alt="Apresentação de Programação para a turma.">
+                        <p class="legenda">Apresentação de um trabalho de Programação para a turma.</p>
+                    </div>
+                    <div class="foto-item">
+                        <img src="imagem/Foto5.jpg" alt="Momento de Intervalo na universidade.">
+                        <p class="legenda">Momento de Intervalo na universidade.</p>
+                    </div>
+                    <div class="foto-item">
+                        <img src="imagem/Foto1.png" alt="Eu no Recinto Escolar.">
+                        <p class="legenda"> Eu no Recinto Escolar.</p>
+                    </div>
+                    <div class="foto-item">
+                        <img src="imagem/Foto3.jpg" alt="Pausa nas escadas da Faculdade.">
+                        <p class="legenda">Um momento de pausa nas escadas da Faculdade.</p>
+                    </div>
+                </div>
+
+                <h3>Minha primeira Interação com o Ciclo while em java.</h3>
+                <div class="video-local-container">
+                    <video controls>
+                        <source src="video/Meu-Video.mp4" type="video/mp4">
+                        O seu navegador não suporta a tag de vídeo.
+                    </video>
+                    <p> Quando estava aprender a usar o while em java.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto <i class="fas fa-envelope"></i></h2>
+            <div class="card">
+                <p>Use o formulário abaixo para me enviar uma mensagem, ou use os meus links diretos.</p>
+                
+                <form action="https://formspree.io/f/meopoydo" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Seu Email</label>
+                        <input type="email" id="email" name="_replyto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensagem</label>
+                        <textarea id="message" name="mensagem" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
+                
+                <div class="social-links">
+                    <p>Ou conecte-se através:</p>
+                    <ul>
+                        <li><strong>GitHub:</strong> <a href="https://github.com/Leonel-Rachid10" target="_blank">https://github.com/Leonel-Rachid10</a></li>
+                        <li><strong>Instagram:</strong> <a href="https://www.instagram.com/leonel_rachid_10/" target="_blank">instagram.com/leonel_rachid_10/</a></li>
+                        <li><strong>Whatsapp (1):</strong> 852623034</li>
+                        <li><strong>Whatsapp (2):</strong> 833724992</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div id="lightbox" class="lightbox-overlay hidden">
+            <span class="lightbox-close">&times;</span>
+            <img src="" alt="Imagem Ampliada" class="lightbox-content">
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 <a href="https://www.instagram.com/leonel_rachid_10/" target="_blank">Leonel Rachid</a> | Desenvolvedor Web</p>
+        </div>
+    </footer>
+
+    <a id="btnVoltarTopo" href="#sobre">
+        <i class="fas fa-arrow-up"></i>
     </a>
 
-
+    <script src="script.js"></script>
 </body>
 </html>
