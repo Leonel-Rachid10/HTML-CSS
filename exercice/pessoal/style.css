@@ -408,7 +408,7 @@ footer {
 
 .foto-item img {
    width: 100%; 
-    height: 200px; 
+    height: 250px; 
     object-fit: cover; 
     display: block;
 }
@@ -505,7 +505,7 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
     .foto-item img {
-        height: 150px; 
+        height: 180px; 
     }
 }
 
