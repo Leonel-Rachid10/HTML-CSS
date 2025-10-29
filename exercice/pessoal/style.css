@@ -1,34 +1,47 @@
 @charset "UTF-8";
 
-
+/* =================================================== */
+/* VARIÁVEIS DE COR E TEMA (CINZA COMO COR PRIMÁRIA) */
+/* =================================================== */
 :root{
- --cor-primaria: #007BFF;
- --cor-secundaria: #6c757d;
- --cor-fundo: #f8f9fa;
- --cor-texto: #343a40;
- --cor-card-fundo: #ffffff;
- --cor-fundo-header: #0056b3;
- --cor-header-texto: #ffffff;
- --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Tema Claro */
+    --cor-primaria: #343a40; /* Cinza Escuro (Destaque Principal) */
+    --cor-secundaria: #6c757d; /* Cinza Médio (Bordas, Linhas) */
+    --cor-fundo: #f8f9fa; /* Fundo Geral */
+    --cor-texto: #343a40; /* Texto Escuro */
+    --cor-card-fundo: #ffffff; /* Fundo dos Cartões */
+    
+    --cor-fundo-header: #343a40; /* Fundo do Cabeçalho (Cinza Escuro) */
+    --cor-header-texto: #ffffff; /* Texto do Cabeçalho (Branco) */
+    
+    --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
 body.dark-theme {
+    /* Tema Escuro */
     --cor-fundo: #121212; 
     --cor-texto: #e0e0e0; 
     --cor-card-fundo: #1e1e1e; 
-    --cor-fundo-header: #0056b3; 
+    
+    --cor-fundo-header: #1a1a1a; 
     --cor-header-texto: #ffffff;
+    
     --cor-secundaria: #adb5bd; 
+    --cor-primaria: #adb5bd; /* Cinza Claro como destaque no Dark Mode */
 }
+
+/* =================================================== */
+/* RESET E BASE */
+/* =================================================== */
 *{
- margin: 0;
- padding: 0;
- box-sizing: border-box
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
 }
 
 html {
- scroll-behavior: smooth; 
+    scroll-behavior: smooth; 
+    overflow-x: hidden; /* CHAVE: Remove a rolagem lateral */
 }
 
 body{
@@ -36,7 +49,8 @@ body{
     line-height: 1.6;
     color: var(--cor-texto);
     background-color: var(--cor-fundo);
-    padding-top: 90px; 
+    /* NOVO AJUSTE: Aumenta o padding-top para o título "Sobre Mim" aparecer */
+    padding-top: 100px; 
 }
 
 
@@ -51,9 +65,13 @@ h2{
     border-bottom: 2px solid var(--cor-primaria);
     padding-bottom: 10px;
     margin-bottom: 20px;
+    /* Alinha o título Sobre Mim com a margem esquerda do container */
+    margin-left: 20px; 
 }
 
-
+/* =================================================== */
+/* CARTÕES E HOVER */
+/* =================================================== */
 .card{
     background-color: var(--cor-card-fundo);
     padding: 30px;
@@ -65,10 +83,12 @@ h2{
 
 .card:hover {
     transform: translateY(-5px); 
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); 
 }
 
-
+/* =================================================== */
+/* HEADER E NAVEGAÇÃO (FINAL E ALINHADO) */
+/* =================================================== */
 header{
     background-color: var(--cor-fundo-header); 
     color: var(--cor-header-texto);
@@ -91,21 +111,34 @@ header .container{
 header h1{
     font-size: 1.8em;
     margin: 0;
+    white-space: nowrap; 
+    color: var(--cor-header-texto); 
+    line-height: 1; 
+    margin-right: 20px; 
 }
 
 header ul{
     list-style: none;
     display: flex;
+    /* CHAVE: Permite que o menu ocupe espaço e empurre o ícone para a direita */
+    flex-grow: 1; 
+    /* Centraliza os links dentro do espaço que lhe foi dado */
+    justify-content: center;
+    gap: 15px;
+    white-space: nowrap; 
 }
 
 
 header ul li a {
     color: var(--cor-header-texto); 
     text-decoration: none;
-    padding: 0 15px;
+    padding: 0; 
     font-weight: bold;
     transition: color 0.3s;
     position: relative; 
+    white-space: nowrap;
+    align-self: center; 
+    padding-bottom: 5px; 
 }
 
 header ul li a::after {
@@ -115,7 +148,7 @@ header ul li a::after {
     height: 3px;
     bottom: -5px; 
     left: 0;
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-primaria); 
     transition: width 0.3s ease; 
 }
 
@@ -130,22 +163,27 @@ header ul li a:hover {
 
 #toggleDarkMode {
     font-size: 1.2em;
-    margin-left: 20px;
+    margin-left: 20px; 
     background: none;
     border: none;
     cursor: pointer;
     color: var(--cor-header-texto); 
+    align-self: center; 
+    flex-shrink: 0; /* CHAVE: Garante que o ícone fica visível e não é encolhido */
 }
 
+/* =================================================== */
+/* AJUSTES DARK MODE */
+/* =================================================== */
 body.dark-theme h2 {
-    color: var(--cor-primaria);
+    color: var(--cor-primaria); 
     border-bottom-color: var(--cor-primaria);
 }
 
 body.dark-theme .skill-tag, 
 body.dark-theme .btn {
     background-color: var(--cor-primaria);
-    color: var(--cor-header-texto);
+    color: var(--cor-texto); 
 }
 
 body.dark-theme #contacto a,
@@ -164,6 +202,9 @@ body.dark-theme .projeto-item {
     border-bottom: 1px dashed var(--cor-secundaria);
 }
 
+/* =================================================== */
+/* SECÇÕES (Mantidas do original) */
+/* =================================================== */
 
 .sobre-conteudo {
     display: flex; 
@@ -186,8 +227,6 @@ body.dark-theme .projeto-item {
     flex-grow: 1; 
 }
 
-
-
 .skills-list{
     display: flex;
     flex-wrap: wrap;
@@ -203,7 +242,6 @@ body.dark-theme .projeto-item {
     font-weight: bold;
     display: inline-block;
 }
-
 
 .timeline-item{
     border-left: 3px solid var(--cor-primaria);
@@ -223,7 +261,6 @@ body.dark-theme .projeto-item {
     font-size: 0.9em;
     margin-bottom: 5px;
 }
-
 
 .projeto-item{
     margin-bottom: 25px;
@@ -248,7 +285,6 @@ body.dark-theme .projeto-item {
     background-color: var(--cor-fundo-header);
 }
 
-
 .hidden {
     display: none;
 }
@@ -268,8 +304,6 @@ body.dark-theme .projeto-item {
 .btn-toggle:hover {
     color: var(--cor-fundo-header);
 }
-
-
 
 .form-group {
     margin-bottom: 20px;
@@ -323,7 +357,6 @@ body.dark-theme .projeto-item {
     text-decoration: underline;
 }
 
-
 footer {
     text-align: center;
     padding: 20px;
@@ -353,7 +386,9 @@ footer {
     opacity: 0.9;
 }
 
-
+/* =================================================== */
+/* MEDIA QUERIES (RESPONSIVIDADE) */
+/* =================================================== */
 
 @media (max-width: 768px) {
 
@@ -383,7 +418,7 @@ footer {
         font-size: 0.9em;
     }
     
-   
+    
     .card {
         padding: 20px;
     }
