@@ -1,165 +1,160 @@
-
-const toggleButton = document.getElementById('toggleDarkMode');
-const body = document.body;
-const darkThemeKey = 'isDarkTheme'; 
-
-function applyTheme(isDark) {
-    if (isDark) {
-        body.classList.add('dark-theme');
-        
-        if (toggleButton) {
-             toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-    } else {
-        body.classList.remove('dark-theme');
-        
-        if (toggleButton) {
-            toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-    }
-}
-
-
-function toggleDetails(event, elementId) {
-    const detailsDiv = document.getElementById(elementId);
-   
-    const button = event.target; 
-
-    detailsDiv.classList.toggle('hidden');
-
-    if (detailsDiv.classList.contains('hidden')) {
-        button.textContent = 'Mostrar Detalhes';
-    } else {
-        button.textContent = 'Esconder Detalhes';
-    }
-}
-
-
-window.toggleDetails = toggleDetails; 
-
-
-function typewriter(elementId, textArray, delay = 150) {
-    const outputElement = document.getElementById(elementId);
-    if (!outputElement) return;
-
-    let textIndex = 0;
-    let charIndex = 0;
-
-    function type() {
-        // Pega o texto atual
-        const currentText = textArray[textIndex];
-        
-        // Adiciona a próxima letra
-        if (charIndex < currentText.length) {
-            outputElement.innerHTML += currentText.charAt(charIndex);
-            charIndex++;
-            setTimeout(type, delay);
-        } else {
-            // Se terminou o texto, avança para o próximo (ou repete)
-            setTimeout(erase, 2000); // Espera 2 segundos antes de apagar
-        }
-    }
-
-    function erase() {
-        const currentText = textArray[textIndex];
-
-        // Apaga a última letra
-        if (charIndex > 0) {
-            outputElement.innerHTML = currentText.substring(0, charIndex - 1);
-            charIndex--;
-            setTimeout(erase, delay / 2); // Apaga mais rápido
-        } else {
-            // Se terminou de apagar, avança para o próximo texto
-            textIndex = (textIndex + 1) % textArray.length; // Volta ao início se for o último
-            setTimeout(type, 1000); // Espera 1 segundo e começa a escrever o próximo
-        }
-    }
-
-    type(); // Inicia o efeito
-}
-
-
-// ===================================================
-// EVENTOS PRINCIPAIS (CONSOLIDADO em um único DOMContentLoaded)
-// ===================================================
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // 1. LÓGICA DO MODO ESCURO
-    if (toggleButton) {
-        const savedTheme = localStorage.getItem(darkThemeKey);
-        // Verifica se há tema salvo ou se o sistema prefere dark (se não houver tema salvo)
-        const isDark = savedTheme === 'true' || (savedTheme === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        
-        applyTheme(isDark);
+    // ===============================================
+    // 1. Dark Mode Toggle
+    // ===============================================
+    const toggleDarkModeBtn = document.getElementById('toggleDarkMode');
+    const body = document.body;
 
-        toggleButton.addEventListener('click', () => {
-            const isCurrentlyDark = body.classList.contains('dark-theme');
-            
-            applyTheme(!isCurrentlyDark);
-            
-            localStorage.setItem(darkThemeKey, !isCurrentlyDark);
-        });
+    // Carregar preferência do utilizador ou do sistema
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        body.classList.add(currentTheme);
+        // Atualizar ícone da lua/sol conforme o tema carregado
+        updateDarkModeIcon(currentTheme === 'dark-theme');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // Se não houver preferência guardada, usar a do sistema
+        body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark-theme');
+        updateDarkModeIcon(true);
+    } else {
+        updateDarkModeIcon(false); // Tema claro por padrão
     }
 
-    // 2. LÓGICA DO LIGHTBOX PARA GALERIA
-    const lightbox = document.getElementById('lightbox');
-    const lightboxContent = document.querySelector('.lightbox-content');
-    const lightboxClose = document.querySelector('.lightbox-close');
-    const galeriaFotos = document.querySelector('.galeria-fotos'); 
-
-    if (galeriaFotos && lightbox) { 
-        galeriaFotos.addEventListener('click', (e) => {
-            
-            if (e.target.tagName === 'IMG' && e.target.closest('.foto-item')) {
-                lightbox.classList.add('active'); 
-                lightboxContent.src = e.target.src; 
-            }
-        });
-
-        lightboxClose.addEventListener('click', () => {
-            lightbox.classList.remove('active');
-        });
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) { 
-                lightbox.classList.remove('active');
-            }
-        });
-    }
-
-    // Fechar o lightbox ao pressionar a tecla ESC
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox && lightbox.classList.contains('active')) {
-            lightbox.classList.remove('active');
+    toggleDarkModeBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        if (body.classList.contains('dark-theme')) {
+            localStorage.setItem('theme', 'dark-theme');
+            updateDarkModeIcon(true);
+        } else {
+            localStorage.setItem('theme', 'light-theme');
+            updateDarkModeIcon(false);
         }
     });
-    
-    // 3. LÓGICA DO TYPEWRITER
-    const textos = [
-        "Estudante de Gestão e Informática.",
-        "Entusiasta de HTML, CSS e JS.",
-        "Futuro Desenvolvedor de Aplicações."
-    ];
-    // Inicia a animação no elemento com ID 'typewriter-text'
-    typewriter('typewriter-text', textos); 
 
-}); // FIM DO ÚNICO DOMContentLoaded
-
-// ===================================================
-// FUNÇÕES DE SCROLL (Botão Voltar ao Topo)
-// ===================================================
-window.onscroll = function() {
-    scrollFunction();
-};
-
-function scrollFunction() {
-    const btnTopo = document.getElementById("btnVoltarTopo");
-    
-    if (btnTopo) {
-        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-            btnTopo.classList.remove("hidden");
-        } else {
-            btnTopo.classList.add("hidden");
+    // Função para atualizar o ícone da lua/sol
+    function updateDarkModeIcon(isDarkMode) {
+        if (toggleDarkModeBtn) {
+            if (isDarkMode) {
+                toggleDarkModeBtn.innerHTML = '<i class="fas fa-sun"></i>'; // Ícone de sol para modo escuro
+            } else {
+                toggleDarkModeBtn.innerHTML = '<i class="fas fa-moon"></i>'; // Ícone de lua para modo claro
+            }
         }
     }
-}
+
+    // ===============================================
+    // 2. Botão Voltar ao Topo
+    // ===============================================
+    const btnVoltarTopo = document.getElementById('btnVoltarTopo');
+
+    // Mostra ou esconde o botão ao rolar a página
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) { // Mostra o botão após 300px de rolagem
+            btnVoltarTopo.classList.remove('hidden');
+            btnVoltarTopo.style.display = 'block'; // Garante que seja visível
+        } else {
+            btnVoltarTopo.classList.add('hidden');
+            btnVoltarTopo.style.display = 'none'; // Esconde o botão
+        }
+    });
+
+    // Rola suavemente para o topo ao clicar no botão
+    btnVoltarTopo.addEventListener('click', (e) => {
+        e.preventDefault(); // Evita o comportamento padrão do link
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+
+    // ===============================================
+    // 3. Typewriter Effect
+    // ===============================================
+    const typewriterTextElement = document.getElementById('typewriter-text');
+    if (typewriterTextElement) {
+        const textToType = "e Conhecereis a Verdade, e a Verdade Vos Libertara! . Nasci Para Prosperar , Eu Sou Oposto de Falençia.";
+        let i = 0;
+        let isDeleting = false;
+        let charIndex = 0;
+        let typingSpeed = 100; // Velocidade de digitação (ms)
+        let deletingSpeed = 50; // Velocidade de apagamento (ms)
+        let delayBetweenSentences = 1500; // Pausa antes de apagar/redigitar (ms)
+
+        function type() {
+            const currentText = textToType.substring(0, charIndex);
+            typewriterTextElement.textContent = currentText;
+
+            if (!isDeleting && charIndex < textToType.length) {
+                charIndex++;
+                typingSpeed = 100; // Velocidade normal de digitação
+            } else if (isDeleting && charIndex > 0) {
+                charIndex--;
+                typingSpeed = 50; // Velocidade normal de apagamento
+            } else if (!isDeleting && charIndex === textToType.length) {
+                isDeleting = true;
+                typingSpeed = delayBetweenSentences; // Pausa antes de apagar
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                typingSpeed = 500; // Pausa antes de digitar novamente
+            }
+
+            setTimeout(type, typingSpeed);
+        }
+
+    
+        type();
+    }
+
+
+    
+    window.toggleDetails = function(event, id) {
+        event.preventDefault(); 
+        const detalhes = document.getElementById(id);
+        const button = event.target;
+
+        if (detalhes) {
+            detalhes.classList.toggle('hidden');
+            if (detalhes.classList.contains('hidden')) {
+                button.textContent = 'Mostrar Detalhes';
+            } else {
+                button.textContent = 'Esconder Detalhes';
+            }
+        }
+    };
+
+    const lightboxOverlay = document.getElementById('lightbox');
+    const lightboxContent = document.querySelector('.lightbox-content');
+    const lightboxClose = document.querySelector('.lightbox-close');
+    const galeriaImagens = document.querySelectorAll('.galeria-fotos .foto-item img');
+
+   
+    galeriaImagens.forEach(image => {
+        image.addEventListener('click', () => {
+            lightboxOverlay.classList.add('active'); 
+            lightboxContent.src = image.src; 
+            lightboxContent.alt = image.alt; 
+        });
+    });
+
+    
+    lightboxClose.addEventListener('click', () => {
+        lightboxOverlay.classList.remove('active');
+    });
+
+    
+    lightboxOverlay.addEventListener('click', (e) => {
+    
+        if (e.target === lightboxOverlay) { 
+            lightboxOverlay.classList.remove('active');
+        }
+    });
+
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+            lightboxOverlay.classList.remove('active');
+        }
+    });
+
+}); 
