@@ -1,3 +1,21 @@
+// A função `toggleDetails` deve ser definida fora do DOMContentLoaded
+// para ser acessível através do `onclick` no HTML.
+window.toggleDetails = function(event, id) {
+    event.preventDefault(); 
+    const detalhes = document.getElementById(id);
+    const button = event.target;
+
+    if (detalhes) {
+        detalhes.classList.toggle('hidden');
+        if (detalhes.classList.contains('hidden')) {
+            button.textContent = 'Mostrar Detalhes';
+        } else {
+            button.textContent = 'Esconder Detalhes';
+        }
+    }
+};
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // ===============================================
     // 1. Dark Mode Toggle
@@ -5,41 +23,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleDarkModeBtn = document.getElementById('toggleDarkMode');
     const body = document.body;
 
-    // Carregar preferência do utilizador ou do sistema
+    // Função para atualizar o ícone da lua/sol
+    function updateDarkModeIcon(isDarkMode) {
+        if (toggleDarkModeBtn) {
+            if (isDarkMode) { 
+                toggleDarkModeBtn.innerHTML = '<i class="fas fa-sun"></i>'; 
+            } else {
+                toggleDarkModeBtn.innerHTML = '<i class="fas fa-moon"></i>'; 
+            }
+        }
+    }
+
+    // Carregar e aplicar o tema
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         body.classList.add(currentTheme);
-        // Atualizar ícone da lua/sol conforme o tema carregado
         updateDarkModeIcon(currentTheme === 'dark-theme');
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // Se não houver preferência guardada, usar a do sistema
         body.classList.add('dark-theme');
         localStorage.setItem('theme', 'dark-theme');
         updateDarkModeIcon(true);
     } else {
-        updateDarkModeIcon(false); // Tema claro por padrão
+        updateDarkModeIcon(false);
     }
 
-    toggleDarkModeBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-theme');
-        if (body.classList.contains('dark-theme')) {
-            localStorage.setItem('theme', 'dark-theme');
-            updateDarkModeIcon(true);
-        } else {
-            localStorage.setItem('theme', 'light-theme');
-            updateDarkModeIcon(false);
-        }
-    });
-
-    // Função para atualizar o ícone da lua/sol
-    function updateDarkModeIcon(isDarkMode) {
-        if (toggleDarkModeBtn) {
-            if (isDarkMode) {
-                toggleDarkModeBtn.innerHTML = '<i class="fas fa-sun"></i>'; // Ícone de sol para modo escuro
-            } else {
-                toggleDarkModeBtn.innerHTML = '<i class="fas fa-moon"></i>'; // Ícone de lua para modo claro
-            }
-        }
+    // Evento de clique
+    if (toggleDarkModeBtn) {
+        toggleDarkModeBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            const isDarkMode = body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDarkMode ? 'dark-theme' : 'light-theme');
+            updateDarkModeIcon(isDarkMode);
+        });
     }
 
     // ===============================================
@@ -47,114 +62,110 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===============================================
     const btnVoltarTopo = document.getElementById('btnVoltarTopo');
 
-    // Mostra ou esconde o botão ao rolar a página
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) { // Mostra o botão após 300px de rolagem
-            btnVoltarTopo.classList.remove('hidden');
-            btnVoltarTopo.style.display = 'block'; // Garante que seja visível
-        } else {
-            btnVoltarTopo.classList.add('hidden');
-            btnVoltarTopo.style.display = 'none'; // Esconde o botão
-        }
-    });
-
-    // Rola suavemente para o topo ao clicar no botão
-    btnVoltarTopo.addEventListener('click', (e) => {
-        e.preventDefault(); // Evita o comportamento padrão do link
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (btnVoltarTopo) {
+        // Mostra/Esconde o botão
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) { 
+                btnVoltarTopo.classList.remove('hidden');
+                btnVoltarTopo.style.display = 'flex'; 
+            } else {
+                btnVoltarTopo.classList.add('hidden');
+                btnVoltarTopo.style.display = 'none';
+            }
         });
-    });
+
+        // Rolagem suave
+        btnVoltarTopo.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
 
     // ===============================================
-    // 3. Typewriter Effect
+    // 3. Typewriter Effect (Volta ao Modo Loop Digitar/Apagar)
     // ===============================================
     const typewriterTextElement = document.getElementById('typewriter-text');
     if (typewriterTextElement) {
         const textToType = "e Conhecereis a Verdade, e a Verdade Vos Libertara! . Nasci Para Prosperar , Eu Sou Oposto de Falençia.";
-        let i = 0;
-        let isDeleting = false;
         let charIndex = 0;
-        let typingSpeed = 100; // Velocidade de digitação (ms)
-        let deletingSpeed = 50; // Velocidade de apagamento (ms)
-        let delayBetweenSentences = 1500; // Pausa antes de apagar/redigitar (ms)
+        let isDeleting = false;
+        let typingSpeed = 100; 
+        const delayBetweenSentences = 1500; 
 
         function type() {
             const currentText = textToType.substring(0, charIndex);
             typewriterTextElement.textContent = currentText;
 
             if (!isDeleting && charIndex < textToType.length) {
+                // Digitando
                 charIndex++;
-                typingSpeed = 100; // Velocidade normal de digitação
+                typingSpeed = 100; 
             } else if (isDeleting && charIndex > 0) {
+                // Apagando
                 charIndex--;
-                typingSpeed = 50; // Velocidade normal de apagamento
+                typingSpeed = 50; 
             } else if (!isDeleting && charIndex === textToType.length) {
+                // Pausa antes de começar a apagar
                 isDeleting = true;
-                typingSpeed = delayBetweenSentences; // Pausa antes de apagar
+                typingSpeed = delayBetweenSentences; 
             } else if (isDeleting && charIndex === 0) {
+                // Pausa antes de começar a redigitar
                 isDeleting = false;
-                typingSpeed = 500; // Pausa antes de digitar novamente
+                typingSpeed = 500; 
             }
 
+            // Garante que a próxima chamada à função é feita, criando o loop
             setTimeout(type, typingSpeed);
         }
 
-    
+        // Inicia o efeito
         type();
     }
 
 
-    
-    window.toggleDetails = function(event, id) {
-        event.preventDefault(); 
-        const detalhes = document.getElementById(id);
-        const button = event.target;
-
-        if (detalhes) {
-            detalhes.classList.toggle('hidden');
-            if (detalhes.classList.contains('hidden')) {
-                button.textContent = 'Mostrar Detalhes';
-            } else {
-                button.textContent = 'Esconder Detalhes';
-            }
-        }
-    };
-
+    // ===============================================
+    // 4. Lightbox de Imagens (Funcional)
+    // ===============================================
     const lightboxOverlay = document.getElementById('lightbox');
     const lightboxContent = document.querySelector('.lightbox-content');
     const lightboxClose = document.querySelector('.lightbox-close');
     const galeriaImagens = document.querySelectorAll('.galeria-fotos .foto-item img');
 
-   
-    galeriaImagens.forEach(image => {
-        image.addEventListener('click', () => {
-            lightboxOverlay.classList.add('active'); 
-            lightboxContent.src = image.src; 
-            lightboxContent.alt = image.alt; 
+    if (lightboxOverlay && lightboxContent && galeriaImagens.length > 0) {
+        
+        // Abre o lightbox
+        galeriaImagens.forEach(image => {
+            image.addEventListener('click', () => {
+                lightboxOverlay.classList.add('active'); 
+                lightboxContent.src = image.src; 
+                lightboxContent.alt = image.alt; 
+            });
         });
-    });
 
-    
-    lightboxClose.addEventListener('click', () => {
-        lightboxOverlay.classList.remove('active');
-    });
-
-    
-    lightboxOverlay.addEventListener('click', (e) => {
-    
-        if (e.target === lightboxOverlay) { 
-            lightboxOverlay.classList.remove('active');
+        // Fecha o lightbox ao clicar no 'x'
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', () => {
+                lightboxOverlay.classList.remove('active');
+            });
         }
-    });
+       
+        // Fecha o lightbox ao clicar fora da imagem
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) { 
+                lightboxOverlay.classList.remove('active');
+            }
+        });
 
+        // Fecha o lightbox ao pressionar a tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+                lightboxOverlay.classList.remove('active');
+            }
+        });
+    }
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
-            lightboxOverlay.classList.remove('active');
-        }
-    });
-
-}); 
+});
