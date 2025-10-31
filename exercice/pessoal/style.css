@@ -127,8 +127,9 @@ header ul{
     display: flex;
     flex-grow: 1; 
     justify-content: center;
-    gap: 15px;
+    gap: 25px;
     white-space: nowrap; 
+    padding: 0 20px;
 }
 
 
