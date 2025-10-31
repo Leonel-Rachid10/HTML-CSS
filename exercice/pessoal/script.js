@@ -1,5 +1,5 @@
-// A função `toggleDetails` deve ser definida fora do DOMContentLoaded
-// para ser acessível através do `onclick` no HTML.
+// A função `toggleDetails` é crucial para os botões "Mostrar Detalhes"
+// e deve ser definida fora do DOMContentLoaded para ser acessível através do 'onclick' no HTML.
 window.toggleDetails = function(event, id) {
     event.preventDefault(); 
     const detalhes = document.getElementById(id);
@@ -26,20 +26,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para atualizar o ícone da lua/sol
     function updateDarkModeIcon(isDarkMode) {
         if (toggleDarkModeBtn) {
+            // Se estiver no modo escuro, mostra o sol para convidar à mudança para o modo claro
             if (isDarkMode) { 
                 toggleDarkModeBtn.innerHTML = '<i class="fas fa-sun"></i>'; 
             } else {
+                // Se estiver no modo claro, mostra a lua para convidar à mudança para o modo escuro
                 toggleDarkModeBtn.innerHTML = '<i class="fas fa-moon"></i>'; 
             }
         }
     }
 
-    // Carregar e aplicar o tema
+    // Carregar e aplicar o tema (preferência do utilizador ou do sistema)
     const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         body.classList.add(currentTheme);
         updateDarkModeIcon(currentTheme === 'dark-theme');
     } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // Usa a preferência do sistema se não houver tema guardado
         body.classList.add('dark-theme');
         localStorage.setItem('theme', 'dark-theme');
         updateDarkModeIcon(true);
@@ -86,10 +89,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ===============================================
-    // 3. Typewriter Effect (Volta ao Modo Loop Digitar/Apagar)
+    // 3. Typewriter Effect (Modo Loop: Digitar/Apagar)
     // ===============================================
     const typewriterTextElement = document.getElementById('typewriter-text');
     if (typewriterTextElement) {
+        // Frase que você definiu:
         const textToType = "e Conhecereis a Verdade, e a Verdade Vos Libertara! . Nasci Para Prosperar , Eu Sou Oposto de Falençia.";
         let charIndex = 0;
         let isDeleting = false;
@@ -140,7 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Abre o lightbox
         galeriaImagens.forEach(image => {
             image.addEventListener('click', () => {
-                lightboxOverlay.classList.add('active'); 
+                lightboxOverlay.classList.remove('hidden'); // Remove a classe que esconde o lightbox
+                lightboxOverlay.classList.add('active'); // Adiciona a classe para mostrá-lo (com CSS transition)
                 lightboxContent.src = image.src; 
                 lightboxContent.alt = image.alt; 
             });
@@ -150,6 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lightboxClose) {
             lightboxClose.addEventListener('click', () => {
                 lightboxOverlay.classList.remove('active');
+                // Opcional: Adicionar a classe 'hidden' de volta (se usada no CSS)
+                // lightboxOverlay.classList.add('hidden');
             });
         }
        
