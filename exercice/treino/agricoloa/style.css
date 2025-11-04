@@ -1,0 +1,208 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+:root {
+    --cor-primaria: #4CAF50;    
+    --cor-secundaria: #8B4513;  
+    --cor-destaque: #FFC107;    
+    --cor-fundo: #f9f9f9;       
+    --cor-texto: #333;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; 
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background-color: var(--cor-fundo);
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto; 
+    padding: 0 20px;
+}
+
+header {
+    background-color: var(--cor-primaria);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none; 
+    display: flex; 
+    justify-content: center; 
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none; 
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s; 
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+}
+
+section {
+    padding: 40px 0;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+}
+
+section h2 {
+    text-align: center; 
+    color: var(--cor-secundaria);
+    margin-bottom: 25px;
+}
+
+
+.galeria-produtos {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
+}
+
+.produto {
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+    transition: transform 0.3s;
+  
+    flex-basis: calc(33.33% - 20px); 
+    max-width: 350px; 
+    min-width: 280px; 
+}
+
+.produto:hover {
+    transform: translateY(-5px); 
+}
+
+.produto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    display: block;
+    border: 1px solid #ddd; 
+}
+
+.produto h3 {
+    color: var(--cor-primaria);
+    margin-bottom: 10px;
+}
+
+.preco {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--cor-destaque);
+    margin-bottom: 10px;
+}
+
+.descricao {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    min-height: 40px; 
+}
+
+
+.btn-comprar {
+    background-color: var(--cor-destaque);
+    color: var(--cor-secundaria);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-comprar:hover {
+    background-color: #ffda6a;
+}
+
+
+.formulario-contato {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.formulario-contato label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.formulario-contato input[type="text"],
+.formulario-contato input[type="email"],
+.formulario-contato textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; 
+}
+
+.formulario-contato button[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.formulario-contato button[type="submit"]:hover {
+    background-color: #388E3C;
+}
+
+
+footer {
+    background-color: var(--cor-secundaria);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 0.9em;
+}
+
+footer a {
+    color: var(--cor-destaque);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
