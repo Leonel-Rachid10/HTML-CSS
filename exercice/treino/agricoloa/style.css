@@ -7,7 +7,7 @@
 :root {
     --cor-primaria: #4CAF50;    
     --cor-secundaria: #8B4513;  
-    --cor-destaque: #FFC107;    
+    --cor-destaque: #FFC107;   
     --cor-fundo: #f9f9f9;       
     --cor-texto: #333;
 }
@@ -72,12 +72,25 @@ section h2 {
 }
 
 
-.galeria-produtos {
-    display: flex;
+.galeria-flex {
+    display: flex; 
     flex-wrap: wrap; 
     gap: 20px; 
-    justify-content: center; 
+    justify-content: flex-start; 
+    margin-bottom: 40px;
 }
+
+.categoria-produtos h3 {
+    color: var(--cor-secundaria); 
+    border-bottom: 2px solid var(--cor-destaque); 
+    padding-bottom: 5px; 
+    margin-top: 50px; 
+    margin-bottom: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 .produto {
     background-color: white;
@@ -88,7 +101,7 @@ section h2 {
     text-align: center;
     transition: transform 0.3s;
     
-    /* Ajuste para 3 por linha: ligeiramente mais pequeno para maior flexibilidade */
+    
     flex-basis: calc(33% - 20px); 
     flex-grow: 1; 
     max-width: 350px; 
@@ -126,7 +139,6 @@ section h2 {
     margin-bottom: 15px;
     min-height: 40px; 
 }
-
 
 .btn-comprar {
     background-color: var(--cor-destaque);
@@ -187,6 +199,7 @@ section h2 {
 .formulario-contato button[type="submit"]:hover {
     background-color: #388E3C;
 }
+
 
 
 footer {
