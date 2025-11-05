@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -88,10 +87,11 @@ section h2 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     text-align: center;
     transition: transform 0.3s;
-  
-    flex-basis: calc(33.33% - 20px); 
+    
+    /* Ajuste para 3 por linha: ligeiramente mais pequeno para maior flexibilidade */
+    flex-basis: calc(33% - 20px); 
+    flex-grow: 1; 
     max-width: 350px; 
-    min-width: 280px; 
 }
 
 .produto:hover {
