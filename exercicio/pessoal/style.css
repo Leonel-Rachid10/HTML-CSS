@@ -2,27 +2,30 @@
 
 
 :root{
-    --cor-primaria: #343a40; 
-    --cor-secundaria: #6c757d; 
-    --cor-fundo: #f8f9fa; 
-    --cor-fundo-secundario: #f1f3f5; 
-    --cor-texto: #343a40; 
-    --cor-card-fundo: #ffffff; 
-    --cor-fundo-header: #343a40; 
+    --cor-fundo-header: #007bff; 
     --cor-header-texto: #ffffff; 
+
+    --cor-primaria: #007bff; 
+    --cor-secundaria: #0056b3; 
+    --cor-fundo: #f8f9fa; 
+    --cor-fundo-secundario: #e9ecef; 
+    --cor-texto: #212529; 
+    --cor-card-fundo: #ffffff; 
     
     --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
 body.dark-theme {
     --cor-fundo: #121212;
-    --cor-fundo-secundario: #1e1e1e; 
-    --cor-texto: #e0e0e0;
-    --cor-header-fundo: #1f1f1f;
-    --cor-header-texto: #ffffff;
+    --cor-fundo-secundaria: #1e1e1e; 
+    --cor-texto: #ffffff;
+    --cor-fundo-header: #1f1f1f;
+    --cor-header-texto: #87CEEB; 
     --cor-card-fundo: #1f1f1f;
     --sombra-leve: 0 4px 6px rgba(0, 0, 0, 0.4);
+    --cor-primaria: #66b5ff; 
+    --cor-secundaria: #99ccff; 
+    
     --cor-input-borda: #444;
     --cor-input-fundo: #2a2a2a;
 }
