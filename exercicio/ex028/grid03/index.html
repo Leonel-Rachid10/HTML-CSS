@@ -8,12 +8,15 @@
         div.container{
             border: 3px solid skyblue;
             display: grid;
-            height: 250px;
-            grid-template: repeat(3,auto) / repeat(3,auto);
+            grid-template-columns: 100px  40%  repeat(2,1fr);
+            grid-template-rows: repeat(3, 80px) ;
+            grid-auto-rows: 80px;
+            grid-auto-columns: 120;
+             grid-auto-flow: row;
             gap: 10px ;
-            place-items: start center ;
-            place-content: space-between end;
-             
+            place-items: normal normal ;
+            place-content: normal normal;
+            
         }
 
         div.item{
@@ -32,6 +35,11 @@
         <div class="item">E</div>
         <div class="item">F</div>
         <div class="item">G</div>
+        <div class="item">I</div>
+        <div class="item">J</div>
+         <div class="item">k</div>
+        
+        
     </div>
     
 </body>
